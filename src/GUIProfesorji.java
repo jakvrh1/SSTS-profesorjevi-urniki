@@ -19,9 +19,15 @@ public class GUIProfesorji extends JFrame {
 
 	private ProfUrnik profesorjevUrnik = new ProfUrnik();
 	private Map<String, String> tedenskiUrnik = profesorjevUrnik.tedenskiUrnik();
+
 	private JPanel panelaUr, panelaProfesorjevihUr;
 	private JComboBox<String> spustniSeznamProfesorjev, spustniSeznamDnevov;
 
+	/*
+	 * dejanjeSpustnegaSeznama nam omogoči dejanje, ko z miško kliknemo na
+	 * spustni seznam ter izberemo vsebino. S tem omogočimo spremembo ur, ki
+	 * so prikazane za izbran dan in izbranega profesorja.
+	 */
 	private ActionListener dejanjeSpustnegaSeznama = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent dogodek) {
@@ -34,6 +40,11 @@ public class GUIProfesorji extends JFrame {
 			String profesorjevUrnik = tedenskiUrnik.get(profesor);
 			String[] noviUrnik = new String[11];
 
+			/*
+			 * Sprehodimo se čez vse profesorjeve ure. Če se izbrani
+			 * dan ujema z dnevom pri vsebini se ura zapiše v seznam
+			 * noviUrnik
+			 */
 			for (String profesorjevaUra : profesorjevUrnik.split(":")) {
 				if (profesorjevaUra.split(",")[2].equalsIgnoreCase(dan)) {
 					Integer ura = new Integer(profesorjevaUra.split(",")[3]);
@@ -41,6 +52,14 @@ public class GUIProfesorji extends JFrame {
 				}
 			}
 
+			/*
+			 * V primeru, da ima noviUrnik[indeks] vsebino jo
+			 * prikažemo na grafičnem uporabniškem vmesniku tako, da
+			 * dodamo JLabel z št. ure, drugače dodamo samo neviden
+			 * razmik. Box.createRigidArea(new Dimension(vrednost,
+			 * vrednost)) uporabimo za neviden razmik.
+			 * 
+			 */
 			for (String profesorjevaUra : noviUrnik) {
 				if (profesorjevaUra == null)
 					panelaProfesorjevihUr.add(Box.createRigidArea(new Dimension(5, 50)));
@@ -76,8 +95,8 @@ public class GUIProfesorji extends JFrame {
 
 		panelaUr = new JPanel();
 		panelaUr.setBounds(12, 48, 152, 722);
-		getContentPane().add(panelaUr);
 		panelaUr.setLayout(new BoxLayout(panelaUr, BoxLayout.PAGE_AXIS));
+		getContentPane().add(panelaUr);
 
 		panelaProfesorjevihUr = new JPanel();
 		panelaProfesorjevihUr.setBounds(176, 48, 160, 722);
@@ -90,7 +109,15 @@ public class GUIProfesorji extends JFrame {
 		setVisible(true);
 	}
 
+	/*
+	 * Doda vrednosti spustnemu seznamu spustniSeznamProfesorjev in
+	 * spustniSeznamDnevov.
+	 */
 	private void inicializacijaSpustnihSeznamov() {
+		/*
+		 * Vse profesorje dodamo po abecedi zvrščene v
+		 * spustniSeznamProfesorjev
+		 */
 		List<String> profesorji = new LinkedList<String>();
 		for (Entry<String, String> s : tedenskiUrnik.entrySet())
 			profesorji.add(s.getKey());
@@ -102,7 +129,7 @@ public class GUIProfesorji extends JFrame {
 		spustniSeznamProfesorjev.revalidate();
 		spustniSeznamProfesorjev.repaint();
 
-		for (String s : "ponendeljek torek sreda cetrtek petek".split(" "))
+		for (String s : "ponedeljek torek sreda četrtek petek".split(" "))
 			spustniSeznamDnevov.addItem(s);
 
 		spustniSeznamDnevov.revalidate();
@@ -110,6 +137,10 @@ public class GUIProfesorji extends JFrame {
 
 	}
 
+	/*
+	 * Metoda doda ure na grafični uporabniški vmesnik. Npr.: predura,
+	 * 1.ura, 2.ura...
+	 */
 	private void prikazUr() {
 		JLabel predura = new JLabel("Predura");
 		predura.setFont(new Font("Mono", Font.PLAIN, 24));
