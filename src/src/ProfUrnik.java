@@ -46,11 +46,11 @@ public class ProfUrnik {
 		URL naslovSpletneStrani = null;
 		try {
 			naslovSpletneStrani = new URL(SSTS_EASISTENT_URL + stevilkeRazredov[indeks]);
-			HttpURLConnection spletnaPovezav = (HttpURLConnection) naslovSpletneStrani.openConnection();
+			HttpURLConnection spletnaPovezava = (HttpURLConnection) naslovSpletneStrani.openConnection();
 
-			if (spletnaPovezav.getResponseCode() == HttpURLConnection.HTTP_OK) {
+			if (spletnaPovezava.getResponseCode() == HttpURLConnection.HTTP_OK) {
 				BufferedReader bralnikHTML = new BufferedReader(
-						new InputStreamReader(spletnaPovezav.getInputStream(), "UTF-8"));
+						new InputStreamReader(spletnaPovezava.getInputStream(), "UTF-8"));
 
 				String s;
 				while ((s = bralnikHTML.readLine()) != null)
@@ -74,7 +74,7 @@ public class ProfUrnik {
 	/*
 	 * Sprehodi se čez HTML String od profesorja. HTML kodo razdeli na HTML
 	 * odseke tako, da imamo na koncu lažje berljive delčke kode. Vse delčke
-	 * kode pošlje naprej k methodi dodajProfesorjevUrnik()
+	 * kode pošlje naprej k metodi dodajProfesorjevUrnik()
 	 */
 	private void profesorjevUrnik(String HTML) {
 		int ura = 0;
@@ -106,12 +106,12 @@ public class ProfUrnik {
 
 	/*
 	 * Sprehodi se čez delček HTML kode ter preveri ali je ura odpadla in
-	 * kateri profesor poočuje uro. Profesorja ter njegovo uro doda tako, da
+	 * kateri profesor poučuje uro. Profesorja ter njegovo uro doda tako, da
 	 * kliče metodo vstaviTedenskiUrnik()
 	 */
-	private void dodajProfesorjevUrnik(String delčekHTML, int dan, int ura) {
-		String[] predmet = delčekHTML.split("class=\"text14 bold\"><span title=\"");
-		String[] profesor = delčekHTML.split("<div class=\"text11\">\\s+");
+	private void dodajProfesorjevUrnik(String delcekHTML, int dan, int ura) {
+		String[] predmet = delcekHTML.split("class=\"text14 bold\"><span title=\"");
+		String[] profesor = delcekHTML.split("<div class=\"text11\">\\s+");
 
 		for (int i = 0; i < predmet.length && i < profesor.length; ++i) {
 			boolean aliJeUraOdpadla = false;

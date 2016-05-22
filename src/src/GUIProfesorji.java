@@ -58,7 +58,6 @@ public class GUIProfesorji extends JFrame {
 			 * dodamo JLabel z št. ure, drugače dodamo samo neviden
 			 * razmik. Box.createRigidArea(new Dimension(vrednost,
 			 * vrednost)) uporabimo za neviden razmik.
-			 * 
 			 */
 			for (String profesorjevaUra : noviUrnik) {
 				if (profesorjevaUra == null)
@@ -110,7 +109,7 @@ public class GUIProfesorji extends JFrame {
 	}
 
 	/*
-	 * Doda vrednosti spustnemu seznamu spustniSeznamProfesorjev in
+	 * Doda vrednosti spustnima seznamoma spustniSeznamProfesorjev in
 	 * spustniSeznamDnevov.
 	 */
 	private void inicializacijaSpustnihSeznamov() {
