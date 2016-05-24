@@ -1,4 +1,4 @@
-import java.io.BufferedReader;
+﻿import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,7 +15,8 @@ public class ProfUrnik {
 	 * dodamo končnico iz seznama stevilkeRazredov, da dobimo popolne
 	 * naslove easistent urnikov
 	 */
-	static private final String SSTS_EASISTENT_URL = "https://www.easistent.com/urniki/a193cdd53a5b8a19124e6ab27e40820343804650/razredi/";
+	static private final String SSTS_EASISTENT_URL =
+			 "https://www.easistent.com/urniki/a193cdd53a5b8a19124e6ab27e40820343804650/razredi/";
 	private String[] stevilkeRazredov = new String[] { "48485", "86045", "86055", "48475", "86065", "48495",
 			"86075", "117074", "85815", "85825", "85835", "85905", "85915", "85965", "85975", "85845",
 			"85855", "86035", "85925", "85935", "85985", "85995", "85865", "85875", "86005", "86015",
