@@ -23,8 +23,8 @@ public class ProfUrnik {
 			"85945", "85885", "85895", "86025" };
 
 	/*
-	 * Primer vnosa: <J. Vrhovec ; J. Vrhovec, št.Sobe, št.Dneva, št.Ure :
-	 * J. Vrhovec, št.Sobe, št.Dneva, št.Ure > V primeru lahko razberemo, da
+	 * Primer vnosa: <J. Vrhovec ; J. Vrhovec, št. Učilnice, št.Dneva, št.Ure :
+	 * J. Vrhovec, št.Učilnice, št.Dneva, št.Ure > V primeru lahko razberemo, da
 	 * je vrednost razdeljena z : (dvopičjem). Sama vrednost pa se razdeli z
 	 * , (vejico).
 	 */
